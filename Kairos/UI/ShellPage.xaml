@@ -32,7 +32,7 @@
                 </AutoSuggestBox>
             </NavigationView.AutoSuggestBox>
 
-            <Frame x:Name="rootFrame"  Navigated="RootFrame_Navigated" />
+            <Frame x:Name="rootFrame" Background="SaddleBrown" Navigated="RootFrame_Navigated" />
         </NavigationView>
     </Grid>
 </Page>
