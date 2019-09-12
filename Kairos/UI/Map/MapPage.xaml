@@ -11,9 +11,34 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Ellipse    HorizontalAlignment="Right"
+                    Margin="6,8,10,1"
+                    Height="22"
+                    Width="22"
+                    Stroke="Black"
+                    Canvas.ZIndex="4"
+                    VerticalAlignment="Top"/>
+        <SymbolIcon x:Name="btnCenterToLocation"
+                    Margin="10"
+                    Foreground="Black"
+                    Symbol="MapPin"
+                    Canvas.ZIndex="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    PointerPressed="BtnCenterToLocation_PointerPressed"/>
         <maps:MapControl x:Name="myMap" 
                         ZoomLevel="200"
-                        MapTapped="MyMap_MapTapped"    
-                                     />
+                         ZoomInteractionMode="GestureAndControl"
+                         RotateInteractionMode="GestureAndControl"
+                         TiltInteractionMode="GestureAndControl"
+                        MapTapped="MyMap_MapTapped"    />
+        <Button x:Name="bbtnCopyLocation"
+                Click="BbtnCopyLocation_Click"
+                HorizontalAlignment="Right"
+                Margin="0,0,0,50"
+                VerticalAlignment="Bottom"
+                Template="{StaticResource KairosStandardBtn}"
+                Content="Kopiern"/>
+
     </Grid>
 </Page>
