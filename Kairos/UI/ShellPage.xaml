@@ -35,6 +35,7 @@
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="Home"/>
+                <NavigationViewItem Icon="Map" Content="Map" Tag="Karte"/>
                 <NavigationViewItem Icon="CalendarReply" Content="Datumssuche" Tag="Datum"/>
             </NavigationView.MenuItems>
 

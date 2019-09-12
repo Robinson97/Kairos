@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource KairosPageBackgroundBrush}">
-    <Grid>
-
-    </Grid>
+    <StackPanel>
+        <SwapChainPanel x:Name="panel" x:FieldModifier="private" />
+    </StackPanel>
+   
 </Page>

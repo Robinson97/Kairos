@@ -1,4 +1,5 @@
 ﻿using Kairos.Business;
+using Kairos.UI.Map;
 using Kairos.UI.Settings;
 using Kairos.UI.WorkOverview;
 using System;
@@ -62,6 +63,9 @@ namespace Kairos
                 {
                     case "Home":
                         frameMain.Navigate(typeof(WorkOverviewPage));
+                        break;
+                    case "Map":
+                        frameMain.Navigate(typeof(MapPage));
                         break;
                     default:
                         break;
