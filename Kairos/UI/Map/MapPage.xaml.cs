@@ -121,7 +121,7 @@ namespace Kairos.UI.Map
             {
                 if (myMap.Layers.Count >= 1)
                 {
-                    myMap.Layers.Clear();
+                      myMap.Layers.Clear();
                 }
                 
 

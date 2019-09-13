@@ -14,6 +14,9 @@
         <TextBox Text="" 
                  ap:TextBoxValidator.RegexValidator="^[0-9]*$"
                  ap:TextBoxValidator.ErrorControlName="errorMsg"/>
+        
         <TextBlock Foreground="Red" Text="FEEEEEEEEEEEEEHHHHHHHHHHHLER" x:Name="errorMsg"/>
+        <Button x:Name="btnStartCamera"
+                Click="BtnStartCamera_Click"/>
     </StackPanel>
 </Page>
