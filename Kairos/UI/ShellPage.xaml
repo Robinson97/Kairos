@@ -17,6 +17,7 @@
             Canvas.ZIndex="0"
             ElementSoundMode="Default"
             x:Name="NavigationViewControl"
+            IsBackButtonVisible="Collapsed"
             Windows10version1803:PaneTitle="Startmenü"
             ItemInvoked="NavigationViewControl_ItemInvoked" 
             AlwaysShowHeader="True"
