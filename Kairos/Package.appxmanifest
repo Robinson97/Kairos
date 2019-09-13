@@ -42,6 +42,17 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.search"/>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="kairos">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.kairos</uap:FileType>
+              <uap:FileType>.jpeg</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>KairosFile</uap:DisplayName>
+            <uap:Logo>Assets\370px-Piktogramm_Baustelle.png</uap:Logo>
+            <uap:InfoTip>Kairosfile</uap:InfoTip>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
