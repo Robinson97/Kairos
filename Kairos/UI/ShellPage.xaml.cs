@@ -9,6 +9,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -71,6 +73,22 @@ namespace Kairos
                         break;
                 }
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            PlayStartSound("Assets/Sound/correct.mp3");
+            
+        }
+
+        private void PlayStartSound(string fileName)
+        {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri($"ms-appx:///{fileName}", UriKind.RelativeOrAbsolute));
+            mediaPlayer.AudioCategory = MediaPlayerAudioCategory.Alerts;
+            //mediaPlayer.Volume = 100.0;
+            mediaPlayer.Play();
+            
         }
     }
 }

@@ -9,17 +9,18 @@
     xmlns:Windows10version1803="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 6)"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
+    Loaded="Page_Loaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        
+
         <NavigationView
             Canvas.ZIndex="0"
             ElementSoundMode="Default"
             x:Name="NavigationViewControl"
             IsBackButtonVisible="Collapsed"
             Windows10version1803:PaneTitle="Startmenü"
-            ItemInvoked="NavigationViewControl_ItemInvoked" 
+            ItemInvoked="NavigationViewControl_ItemInvoked"
             AlwaysShowHeader="True"
             IsSettingsVisible="True"
             Windows10version1809:PaneDisplayMode="LeftCompact"
@@ -31,19 +32,27 @@
                     VerticalAlignment="Stretch"
                     x:FieldModifier="public"
                     PlaceholderText="Search"
-                    QueryIcon="Find">
-                </AutoSuggestBox>
+                    QueryIcon="Find" />
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="Home"/>
-                <NavigationViewItem Icon="Map" Content="Map" Tag="Karte"/>
-                <NavigationViewItem Icon="CalendarReply" Content="Datumssuche" Tag="Datum"/>
+                <NavigationViewItem
+                    Icon="Home"
+                    Content="Home"
+                    Tag="Home" />
+                <NavigationViewItem
+                    Icon="Map"
+                    Content="Map"
+                    Tag="Karte" />
+                <NavigationViewItem
+                    Icon="CalendarReply"
+                    Content="Datumssuche"
+                    Tag="Datum" />
             </NavigationView.MenuItems>
 
             <Frame x:Name="frameMain">
                 <overview:WorkOverviewPage />
             </Frame>
-            <!-- SteelBlue-->
+            <!--  SteelBlue  -->
         </NavigationView>
     </Grid>
 </Page>
