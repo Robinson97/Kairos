@@ -11,7 +11,7 @@
     <AssemblyName>Kairos</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -119,9 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Business\Base\RelayCommand.cs" />
+    <Compile Include="Business\Base\ViewModelBase.cs" />
     <Compile Include="Business\Config\IUserConfigManager.cs" />
+    <Compile Include="Business\Job\IJobManager.cs" />
     <Compile Include="Business\PageItem.cs" />
     <Compile Include="DataAccess\ConfigManager\UserConfig\UserConfigManager.cs" />
+    <Compile Include="DataAccess\JobManager\JobManager.cs" />
+    <Compile Include="Data\Task\JobMediaTask.cs" />
+    <Compile Include="Data\Task\JobTask.cs" />
     <Compile Include="Data\UserConfig.cs" />
     <Compile Include="UI\Map\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
@@ -129,6 +135,7 @@
     <Compile Include="UI\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Settings\SettingsPageVM.cs" />
     <Compile Include="UI\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
@@ -137,6 +144,7 @@
     <Compile Include="UI\WorkOverview\WorkOverviewPage.xaml.cs">
       <DependentUpon>WorkOverviewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\WorkOverview\WorkOverviewPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,6 +153,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\370px-Piktogramm_Baustelle.png" />
+    <Content Include="Assets\Sound\applauding.wav" />
+    <Content Include="Assets\Sound\correct.mp3" />
+    <Content Include="Assets\Sound\horror.wav" />
+    <Content Include="Assets\Sound\siren.wav" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
@@ -183,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Styles\Controls\TextBlock\KairosTextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\WorkOverview\WorkOverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,6 +210,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLightLibs">
+      <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
