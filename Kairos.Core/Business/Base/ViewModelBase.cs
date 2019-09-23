@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kairos.Business.Base
+namespace Kairos.Core.Business.Base
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {

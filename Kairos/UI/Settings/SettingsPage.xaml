@@ -9,7 +9,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource KairosPageBackgroundBrush}"
     mc:Ignorable="d">
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Margin="5">
+        <TextBlock Text="Einstellungen" Style="{StaticResource HeaderTextBlockStyle}" />
         <TextBlock x:Name="tbThemeHeader" Text="Darktheme" />
         <ToggleSwitch x:Name="scEnableDarkMode">
             <i:Interaction.Behaviors>

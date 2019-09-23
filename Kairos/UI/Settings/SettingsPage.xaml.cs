@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,7 +28,7 @@ namespace Kairos.UI.Settings
         public SettingsPage()
         {
             this.InitializeComponent();
-            this.DataContext = new SettingsPageVM();
+            this.DataContext = new SettingsPageVM();   
         }
     }
 }

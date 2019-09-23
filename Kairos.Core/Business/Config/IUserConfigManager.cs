@@ -1,11 +1,12 @@
-﻿using Kairos.Data;
+﻿using Kairos.Core.Data;
+using Kairos.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kairos.Business.Config
+namespace Kairos.Core.Business.Config
 {
     public interface IUserConfigManager
     {

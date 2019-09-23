@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Kairos.Business.Base
+namespace Kairos.Core.Business.Base
 {
 
     /// <summary>

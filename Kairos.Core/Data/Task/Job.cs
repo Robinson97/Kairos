@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kairos.Data.Task
+namespace Kairos.Core.Data.Task
 {
-    public class JobTask
+    public class Job
     {
         #region Propertys
         /// <summary>
@@ -22,7 +22,7 @@ namespace Kairos.Data.Task
         /// <summary>
         /// The Creationdate of the Task
         /// </summary>
-        public DateTime CreationDate { get; set; }
+        public DateTimeOffset CreationDate { get; set; }
         
         /// <summary>
         /// ID from the TFS
@@ -41,7 +41,7 @@ namespace Kairos.Data.Task
         #endregion
 
 
-        public JobTask()
+        public Job()
         {
             ID = Guid.NewGuid();
             CreationDate = DateTime.Now;

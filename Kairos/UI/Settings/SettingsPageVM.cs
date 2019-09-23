@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using Kairos.Business.Base;
+using Kairos.Core.Business.Base;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;

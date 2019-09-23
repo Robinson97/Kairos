@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
-namespace Kairos.Data
+namespace Kairos.Core.Data
 {
     public class UserConfig
     {

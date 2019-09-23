@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kairos.Data.Task
 {
-    public class JobMediaTask : JobTask
+    public class JobMediaTask : Kairos.Core.Data.Task.Job
     {
         public bool ContainsAttachment { get; set; }
 

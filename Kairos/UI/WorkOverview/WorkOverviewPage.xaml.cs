@@ -24,10 +24,14 @@ namespace Kairos.UI.WorkOverview
     /// </summary>
     public sealed partial class WorkOverviewPage : Page
     {
+        #region Propertys
+        public WorkOverviewPageVM ViewModel { get; set; }
+        #endregion
+
         public WorkOverviewPage()
         {
             this.InitializeComponent();
-            this.DataContext = new WorkOverviewPageVM();
+            this.DataContext = ViewModel = new WorkOverviewPageVM();
         }
     }
 }
