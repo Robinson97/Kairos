@@ -35,22 +35,23 @@ namespace Kairos.Core.DataAccess.JobManager
             await SaveTaskCollection();
         }
 
-        public Task SaveTaskCollection()
+        public async Task<bool> SaveTaskCollection()
         {
-            return new Task(() =>
-            {
+            bool success = false;
                 if (JobStore == null)
                     JobStore = new JobStore();
 
-                // serialize JSON to a string and then write string to a file
-                File.WriteAllText(CompletePathToJSON, JsonConvert.SerializeObject(JobStore));
-            });
+
+            await UWP.FileAccess.FileAccessManager.WriteFileAsync(CompletePathToJSON, JsonConvert.SerializeObject(JobStore));
+
+
+            return success;
         }
 
         public JobManager()
         {
             JSONFileName = "jobStorage.json";
-            JSONFileTarget = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
+            JSONFileTarget = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
             JobStore = ReadLocalJobCollection();
         }
 
