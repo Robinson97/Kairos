@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace Kairos.DataAccess.ConfigManager.UserConfig
 {
@@ -14,7 +15,7 @@ namespace Kairos.DataAccess.ConfigManager.UserConfig
 
         public UserConfigManager()
         {
-            PathToUserConfig = "";
+            PathToUserConfig = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         }
 
         public void DeleteUserConfig()
@@ -34,7 +35,7 @@ namespace Kairos.DataAccess.ConfigManager.UserConfig
 
         public void SaveUserConfig()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -11,7 +11,7 @@
     <AssemblyName>Kairos</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Business\Config\IUserConfigManager.cs" />
     <Compile Include="Business\PageItem.cs" />
+    <Compile Include="DataAccess\AppCarrier\AppCarrier.cs" />
     <Compile Include="DataAccess\ConfigManager\UserConfig\UserConfigManager.cs" />
     <Compile Include="Data\UserConfig.cs" />
     <Compile Include="UI\Map\MapPage.xaml.cs">
@@ -189,6 +190,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.9.4</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
@@ -199,7 +203,12 @@
       <Version>12.0.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Kairos.Core\Kairos.Core.csproj">
+      <Project>{f03e3506-7528-4bdb-b93f-2eded9ea2760}</Project>
+      <Name>Kairos.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

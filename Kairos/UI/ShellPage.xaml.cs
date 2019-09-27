@@ -1,4 +1,6 @@
-﻿using Kairos.Business;
+﻿using Autofac;
+using Kairos.Business;
+using Kairos.Business.Config;
 using Kairos.UI.Map;
 using Kairos.UI.Settings;
 using Kairos.UI.WorkOverview;
@@ -28,12 +30,18 @@ namespace Kairos
     {
         #region Fields
         private List<PageItem> PageItems { get; set; }
+        private readonly IUserConfigManager _sampleService;
         #endregion
 
         public ShellPage()
         {
             this.InitializeComponent();
             PageItems = new List<PageItem>();
+            _sampleService = App.Container.Resolve<IUserConfigManager>();
+            Business.App.IAppCarrier d = App.Container.Resolve<Business.App.IAppCarrier>();
+            d.CurrentApp = App.Current;
+
+
             PageItems.Add(new PageItem() { Name = "WorkOverview"  } );
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += ShellPage_BackRequested;

@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Autofac;
+using Kairos.Business.Config;
+using Kairos.DataAccess.AppCarrier;
+using Kairos.DataAccess.ConfigManager.UserConfig;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,6 +27,8 @@ namespace Kairos
     /// </summary>
     sealed partial class App : Application
     {
+        public static Autofac.IContainer Container { get; set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -29,7 +36,29 @@ namespace Kairos
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+
+            Container = ConfigureServices();
+            Core.Lifecycle.Startup.BootAssist.PrepareStartUp(this);
+
+            this.Suspending += OnSuspending;         
+        }
+
+        private Autofac.IContainer ConfigureServices()
+        {
+           
+            var containerBuilder = new ContainerBuilder();
+
+            //  Registers all the platform-specific implementations of services.
+            containerBuilder.RegisterType<UserConfigManager>()
+                           .As<Kairos.Core.Business.Config.IUserConfigManager>()
+                           .SingleInstance();
+
+            containerBuilder.RegisterType<AppCarrier>()
+                           .As<Kairos.Core.Business.App.IAppCarrier>()
+                           .SingleInstance();
+
+            var container = containerBuilder.Build();
+            return container;
         }
 
         protected override void OnFileActivated(FileActivatedEventArgs args)
@@ -73,6 +102,9 @@ namespace Kairos
                     // parameter
                     rootFrame.Navigate(typeof(ShellPage), e.Arguments);
                 }
+
+
+                
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
