@@ -2,21 +2,103 @@
     x:Class="Kairos.UI.WorkOverview.WorkOverviewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:baseStyle="using:Kairos.UI.Styles.Controls.Base"
     xmlns:local="using:Kairos.UI.WorkOverview"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ap="using:Kairos.UI.Styles.Controls.Textfield.AttachedPropertys"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{StaticResource KairosPageBackgroundBrush}">
-    <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
-    <StackPanel>
-        <TextBox Text="" 
-                 ap:TextBoxValidator.RegexValidator="^[0-9]*$"
-                 ap:TextBoxValidator.ErrorControlName="errorMsg"/>
-        
-        <TextBlock Foreground="Red" Text="FEEEEEEEEEEEEEHHHHHHHHHHHLER" x:Name="errorMsg"/>
-        <Button x:Name="btnStartCamera"
-                Click="BtnStartCamera_Click"/>
-    </StackPanel>
+    <!--  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Text="Zeitmanagement"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Style="{StaticResource HeaderTextBlockStyle}" />
+        <RelativePanel
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Grid.Row="1"
+            Grid.ColumnSpan="2">
+            <ProgressBar
+                x:Name="pbDailyProgress"
+                Value="10"
+                Margin="5"
+                Foreground="Wheat"
+                Width="300" />
+            <TextBlock
+                x:Name="tbDailyProgress"
+                Margin="5"
+                RelativePanel.Below="pbDailyProgress"
+                RelativePanel.AlignHorizontalCenterWith="pbDailyProgress"
+                Text="Tagesfortschritt" />
+            <ProgressBar
+                x:Name="pbMonthlyProgress"
+                Value="20"
+                Margin="5"
+                Foreground="Wheat"
+                RelativePanel.RightOf="pbDailyProgress"
+                Width="300" />
+            <TextBlock
+                x:Name="tbMonthlyProgress"
+                Margin="5"
+                RelativePanel.Below="pbMonthlyProgress"
+                RelativePanel.AlignHorizontalCenterWith="pbMonthlyProgress"
+                Text="Monatsfortschritt" />
+            <ProgressBar
+                x:Name="pbOvertime"
+                Value="30"
+                RelativePanel.RightOf="pbMonthlyProgress"
+                Foreground="Wheat"
+                Width="300"
+                Margin="5" />
+            <TextBlock
+                x:Name="tbOvertime"
+                RelativePanel.Below="pbOvertime"
+                RelativePanel.AlignHorizontalCenterWith="pbOvertime"
+                Text="Überstunden" />
+        </RelativePanel>
+        <Button
+            x:Name="btnAddNew"
+            Content="Hinzufügen"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            Command="{Binding CmdAddNewTaskItem}"
+            Style="{ThemeResource KairosButtonStandradStyle}"
+            Template="{ThemeResource KairosStandardBtn}">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="A" />
+            </Button.KeyboardAccelerators>
+        </Button>
+        <Line
+            Stroke="White"
+            StrokeThickness="1"
+            Margin="0,5,0,0"
+            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            Grid.Row="3" />
+        <controls:DataGrid
+            x:Name="lsAllTAskItem"
+            Grid.Row="4"
+            Margin="0,5,0,0"
+            Grid.ColumnSpan="2"
+            AutoGenerateColumns="True"
+            ItemsSource="{x:Bind ViewModel.JobCollection}" />
+
+    </Grid>
 </Page>

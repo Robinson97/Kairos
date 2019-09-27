@@ -1,4 +1,4 @@
-﻿using Kairos.Business.Config;
+﻿using Kairos.Core.Business.Config;
 using Kairos.Data;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace Kairos.DataAccess.ConfigManager.UserConfig
+namespace Kairos.Core.DataAccess.ConfigManager.UserConfig
 {
     public class UserConfigManager : IUserConfigManager
     {

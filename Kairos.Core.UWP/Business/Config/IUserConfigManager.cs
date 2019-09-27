@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kairos.Core.Data;
+using Kairos.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +33,6 @@ namespace Kairos.Core.Business.Config
         /// <summary>
         /// Returns the current userConfig
         /// </summary>
-        Kairos.Core.Data.Config.UserConfig GetUserConfig();
+        UserConfig GetUserConfig();
     }
 }

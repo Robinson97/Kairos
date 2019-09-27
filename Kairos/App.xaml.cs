@@ -1,7 +1,4 @@
 ﻿using Autofac;
-using Kairos.Business.Config;
-using Kairos.DataAccess.AppCarrier;
-using Kairos.DataAccess.ConfigManager.UserConfig;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +24,7 @@ namespace Kairos
     /// </summary>
     sealed partial class App : Application
     {
-        public static Autofac.IContainer Container { get; set; }
+        
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,30 +33,11 @@ namespace Kairos
         public App()
         {
             this.InitializeComponent();
-
-            Container = ConfigureServices();
-            Core.Lifecycle.Startup.BootAssist.PrepareStartUp(this);
-
+            Core.ServiceProvider.PrepareStartup();
             this.Suspending += OnSuspending;         
         }
 
-        private Autofac.IContainer ConfigureServices()
-        {
-           
-            var containerBuilder = new ContainerBuilder();
-
-            //  Registers all the platform-specific implementations of services.
-            containerBuilder.RegisterType<UserConfigManager>()
-                           .As<Kairos.Core.Business.Config.IUserConfigManager>()
-                           .SingleInstance();
-
-            containerBuilder.RegisterType<AppCarrier>()
-                           .As<Kairos.Core.Business.App.IAppCarrier>()
-                           .SingleInstance();
-
-            var container = containerBuilder.Build();
-            return container;
-        }
+     
 
         protected override void OnFileActivated(FileActivatedEventArgs args)
         {

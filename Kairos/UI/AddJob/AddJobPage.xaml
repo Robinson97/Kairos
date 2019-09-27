@@ -1,0 +1,92 @@
+﻿<ContentDialog
+    x:Class="Kairos.UI.AddJob.AddJobPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kairos.UI.AddJob"
+    xmlns:ap="using:Kairos.UI.Styles.Controls.Textfield.AttachedPropertys"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Aufgabe"
+    PrimaryButtonText="Speichern"
+    SecondaryButtonText="Abbrechen"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Text="Beschreibung"
+            Grid.Column="0"
+            Grid.Row="0"
+            x:Name="tbDescription"
+            Margin="5" />
+        <AutoSuggestBox
+            Name="asbDiscription"
+            Margin="5"
+            Grid.Column="1"
+            Text="{x:Bind CurrentJob.Comments, Mode=TwoWay}"
+            Grid.Row="0"
+            PlaceholderText="Beschreibung" />
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="1"
+            Text="TFSID"
+            x:Name="tbTFSID"
+            Margin="5" />
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBox
+                Name="asbTFSID"
+                Margin="5"
+                Text="{x:Bind CurrentJob.TFSID, Mode=TwoWay}"
+                ap:TextBoxValidator.RegexValidator="^[0-9]*$"
+                ap:TextBoxValidator.ErrorControlName="tbErrorBlock"
+                PlaceholderText="Beschreibung" />
+            <TextBlock
+                x:Name="tbErrorBlock"
+                Margin="5,0,0,0"
+                Foreground="Red"
+                Text="Nur Zahlen" />
+        </StackPanel>
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="2"
+            Text="Datum"
+            x:Name="tbDate"
+            Margin="5" />
+        <CalendarDatePicker
+            Grid.Row="2"
+            Grid.Column="1"
+            Date="{x:Bind CurrentJob.CreationDate, Mode=TwoWay}"
+            Margin="5" />
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="3"
+            Text="Dauer"
+            x:Name="tbDuration"
+            Margin="5" />
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <TextBox
+                x:Name="tbxDuration"
+                PlaceholderText="0"
+                Margin="5"
+                Text="{x:Bind CurrentJob.Duration, Mode=TwoWay}"
+                ap:TextBoxValidator.RegexValidator="^[0-9]*$"
+                ap:TextBoxValidator.ErrorControlName="tbErrorBlockDuration" />
+            <TextBlock
+                x:Name="tbErrorBlockDuration"
+                Foreground="Red"
+                Margin="5,0,0,0"
+                Text="Nur Zahlen" />
+        </StackPanel>
+    </Grid>
+</ContentDialog>

@@ -24,24 +24,14 @@ namespace Kairos.UI.WorkOverview
     /// </summary>
     public sealed partial class WorkOverviewPage : Page
     {
+        #region Propertys
+        public WorkOverviewPageVM ViewModel { get; set; }
+        #endregion
+
         public WorkOverviewPage()
         {
             this.InitializeComponent();
-            
-        }
-
-        private async void BtnStartCamera_Click(object sender, RoutedEventArgs e)
-        {
-            //var captureUI = new CameraCaptureUI();
-            //captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
-            //StorageFile file = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
-
-            var a = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-
-     //       Windows.Storage.StorageFolder storageFolder =
-     //Windows.Storage.ApplicationData.Current.LocalFolder;
-     //       Windows.Storage.StorageFile sampleFile =
-     //           await storageFolder.GetFileAsync("sample.txt");
+            this.DataContext = ViewModel = new WorkOverviewPageVM();
         }
     }
 }

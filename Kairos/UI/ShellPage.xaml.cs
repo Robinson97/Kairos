@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Kairos.Business;
-using Kairos.Business.Config;
+using Kairos.Core;
+using Kairos.Core.Business.Config;
 using Kairos.UI.Map;
 using Kairos.UI.Settings;
 using Kairos.UI.WorkOverview;
@@ -11,6 +12,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,10 +40,12 @@ namespace Kairos
         {
             this.InitializeComponent();
             PageItems = new List<PageItem>();
-            _sampleService = App.Container.Resolve<IUserConfigManager>();
-            Business.App.IAppCarrier d = App.Container.Resolve<Business.App.IAppCarrier>();
-            d.CurrentApp = App.Current;
 
+            using (var scope = ServiceProvider.Container.BeginLifetimeScope())
+            {
+                _sampleService = scope.Resolve<IUserConfigManager>();
+            }
+               
 
             PageItems.Add(new PageItem() { Name = "WorkOverview"  } );
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
@@ -79,6 +84,22 @@ namespace Kairos
                         break;
                 }
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            PlayStartSound("Assets/Sound/correct.mp3");
+            
+        }
+
+        private void PlayStartSound(string fileName)
+        {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri($"ms-appx:///{fileName}", UriKind.RelativeOrAbsolute));
+            mediaPlayer.AudioCategory = MediaPlayerAudioCategory.Alerts;
+            //mediaPlayer.Volume = 100.0;
+            mediaPlayer.Play();
+            
         }
     }
 }

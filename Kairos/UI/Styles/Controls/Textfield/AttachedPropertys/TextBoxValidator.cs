@@ -49,7 +49,7 @@ namespace Kairos.UI.Styles.Controls.Textfield.AttachedPropertys
                         textbox.TextChanged -= Textbox_TextChanged;
 
                     }
-                }   
+                }
                 else
                 {
                     return;
