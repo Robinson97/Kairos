@@ -7,19 +7,10 @@ using Kairos.UI.Settings;
 using Kairos.UI.WorkOverview;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -32,9 +23,11 @@ namespace Kairos
     public sealed partial class ShellPage : Page
     {
         #region Fields
+
         private List<PageItem> PageItems { get; set; }
         private readonly IUserConfigManager _sampleService;
-        #endregion
+
+        #endregion Fields
 
         public ShellPage()
         {
@@ -45,21 +38,18 @@ namespace Kairos
             {
                 _sampleService = scope.Resolve<IUserConfigManager>();
             }
-               
 
-            PageItems.Add(new PageItem() { Name = "WorkOverview"  } );
+            PageItems.Add(new PageItem() { Name = "WorkOverview" });
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += ShellPage_BackRequested;
         }
 
         private void ShellPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
-           
         }
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-
         }
 
         private void NavigationViewControl_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -77,9 +67,11 @@ namespace Kairos
                     case "Home":
                         frameMain.Navigate(typeof(WorkOverviewPage));
                         break;
+
                     case "Map":
                         frameMain.Navigate(typeof(MapPage));
                         break;
+
                     default:
                         break;
                 }
@@ -89,7 +81,6 @@ namespace Kairos
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             PlayStartSound("Assets/Sound/correct.mp3");
-            
         }
 
         private void PlayStartSound(string fileName)
@@ -99,7 +90,6 @@ namespace Kairos
             mediaPlayer.AudioCategory = MediaPlayerAudioCategory.Alerts;
             //mediaPlayer.Volume = 100.0;
             mediaPlayer.Play();
-            
         }
     }
 }

@@ -35,7 +35,7 @@
             Grid.ColumnSpan="2">
             <ProgressBar
                 x:Name="pbDailyProgress"
-                Value="10"
+                Value="{Binding DailyProgress}"
                 Margin="5"
                 Foreground="Wheat"
                 Width="300" />
@@ -47,7 +47,7 @@
                 Text="Tagesfortschritt" />
             <ProgressBar
                 x:Name="pbMonthlyProgress"
-                Value="20"
+                Value="{Binding MonthlyProgress}"
                 Margin="5"
                 Foreground="Wheat"
                 RelativePanel.RightOf="pbDailyProgress"
@@ -73,7 +73,7 @@
         </RelativePanel>
         <Button
             x:Name="btnAddNew"
-            Content="Hinzufügen"
+            Content="Add"
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Margin="0,10,0,0"
@@ -99,6 +99,5 @@
             Grid.ColumnSpan="2"
             AutoGenerateColumns="True"
             ItemsSource="{x:Bind ViewModel.JobCollection}" />
-
     </Grid>
 </Page>
