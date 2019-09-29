@@ -53,6 +53,11 @@
             <uap:InfoTip>Kairosfile</uap:InfoTip>
           </uap:FileTypeAssociation>
         </uap:Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Kairos.BackgroundTasks.Backup.BackupBackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent"/>
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>

@@ -223,6 +223,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Kairos.BackgroundTasks\Kairos.BackgroundTasks.csproj">
+      <Project>{4282e66d-0018-41e3-ba4d-6ff59f928613}</Project>
+      <Name>Kairos.BackgroundTasks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kairos.Core.UWP\Kairos.Core.UWP.csproj">
       <Project>{c8f4bbc6-64c3-4581-b41f-60208bf4e1ac}</Project>
       <Name>Kairos.Core.UWP</Name>
