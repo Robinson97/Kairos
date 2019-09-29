@@ -124,6 +124,7 @@
     <Compile Include="Business\Base\RelayCommand.cs" />
     <Compile Include="Business\Base\ViewModelBase.cs" />
     <Compile Include="Business\Config\IUserConfigManager.cs" />
+    <Compile Include="Business\Helper\DateTime\DateTimeHelper.cs" />
     <Compile Include="Business\Job\IJobManager.cs" />
     <Compile Include="Business\PageItem.cs" />
     <Compile Include="ServiceProvider.cs" />
@@ -147,6 +148,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
