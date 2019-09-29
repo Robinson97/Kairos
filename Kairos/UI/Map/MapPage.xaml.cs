@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,10 +18,12 @@ namespace Kairos.UI.Map
     public sealed partial class MapPage : Page
     {
         #region Fields
+
         private BasicGeoposition _basicGeoposition;
         private Geoposition _lastGeoPosition;
         private bool _firstMeasure;
-        #endregion
+
+        #endregion Fields
 
         public MapPage()
         {
@@ -63,11 +57,10 @@ namespace Kairos.UI.Map
 
             myMap.Center = snPoint;
             myMap.ZoomLevel = 14;
-
         }
+
         private void MyMap_MapTapped(Windows.UI.Xaml.Controls.Maps.MapControl sender, Windows.UI.Xaml.Controls.Maps.MapInputEventArgs args)
         {
-
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -79,19 +72,21 @@ namespace Kairos.UI.Map
             {
                 case GeolocationAccessStatus.Unspecified:
                     break;
+
                 case GeolocationAccessStatus.Allowed:
                     Geolocator geolocator = new Geolocator
                     {
                         DesiredAccuracyInMeters = 10,
                         ReportInterval = 2000
-                        
                     };
                     geolocator.PositionChanged += Geolocator_PositionChanged;
                     geolocator.StatusChanged += Geolocator_StatusChanged;
                     Geoposition pos = await geolocator.GetGeopositionAsync();
                     break;
+
                 case GeolocationAccessStatus.Denied:
                     break;
+
                 default:
                     break;
             }
@@ -112,18 +107,16 @@ namespace Kairos.UI.Map
 
         private void Geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
         {
-            
         }
 
-        private void UpdateLocation(BasicGeoposition newPoint, bool center) 
+        private void UpdateLocation(BasicGeoposition newPoint, bool center)
         {
             if (_firstMeasure || _lastGeoPosition == null || (_lastGeoPosition?.Coordinate?.Latitude != newPoint.Latitude && _lastGeoPosition?.Coordinate?.Longitude != newPoint.Longitude))
             {
                 if (myMap.Layers.Count >= 1)
                 {
-                      myMap.Layers.Clear();
+                    myMap.Layers.Clear();
                 }
-                
 
                 var MyLandmarks = new List<MapElement>();
 
@@ -143,8 +136,6 @@ namespace Kairos.UI.Map
                     MapElements = MyLandmarks
                 };
 
-
-                
                 myMap.Layers.Add(LandmarksLayer);
 
                 if (center || _firstMeasure)
@@ -153,7 +144,6 @@ namespace Kairos.UI.Map
                     myMap.ZoomLevel = 20;
                 }
             }
-            
         }
 
         private void BtnCenterToLocation_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -163,7 +153,6 @@ namespace Kairos.UI.Map
 
         private void BbtnCopyLocation_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
