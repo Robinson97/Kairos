@@ -119,10 +119,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\AddJob\AddJobPage.xaml.cs">
+    <Compile Include="UI\NewJobDialog\NewJobDialogPage.xaml.cs">
+      <DependentUpon>NewJobDialogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewJobDialog\NewJobDialogPageVM.cs" />
+    <Compile Include="UI\PopUp\AddJob\AddJobPage.xaml.cs">
       <DependentUpon>AddJobPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\AddJob\AddJobPageVM.cs" />
+    <Compile Include="UI\PopUp\AddJob\AddJobPageVM.cs" />
     <Compile Include="UI\Map\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
@@ -169,7 +173,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="UI\AddJob\AddJobPage.xaml">
+    <Page Include="UI\NewJobDialog\NewJobDialogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PopUp\AddJob\AddJobPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Styles\Controls\TextBlock\KairosTextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\Controls\ToggleSwitch\KairosToggleSwitchStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,9 +235,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kairos.BackgroundTasks\Kairos.BackgroundTasks.csproj">
+    <ProjectReference Include="..\Kairos.BackgroundTasks\BackgroundTasks.csproj">
       <Project>{4282e66d-0018-41e3-ba4d-6ff59f928613}</Project>
-      <Name>Kairos.BackgroundTasks</Name>
+      <Name>BackgroundTasks</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kairos.Core.UWP\Kairos.Core.UWP.csproj">
       <Project>{c8f4bbc6-64c3-4581-b41f-60208bf4e1ac}</Project>

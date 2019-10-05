@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="Kairos.UI.NewJobDialog.NewJobDialogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kairos.UI.NewJobDialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ap="using:Kairos.UI.Styles.Controls.Textfield.AttachedPropertys"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <TextBlock x:Name="tbHeader"
+                   Text="Neue Aufgabe"
+                   Style="{StaticResource TitleTextBlockStyle}"/>
+        <TextBlock
+            Text="Beschreibung"
+            x:Name="tbDescription"
+            Style="{StaticResource BodyTextBlockStyle}"
+            Margin="5" />
+        <AutoSuggestBox
+            Name="asbDiscription"
+            Margin="5"
+            Text="{x:Bind ViewModel.CurrentJob.Comments, Mode=TwoWay}"
+            PlaceholderText="Beschreibung" />
+        <TextBlock
+            Text="TFSID"
+            Style="{StaticResource BodyTextBlockStyle}"
+            x:Name="tbTFSID"
+            Margin="5" />
+        <RelativePanel>
+            <TextBox
+                Name="asbTFSID"
+                Margin="5"
+                Text="{x:Bind ViewModel.CurrentJob.TFSID, Mode=TwoWay}"
+                ap:TextBoxValidator.RegexValidator="^[0-9]*$"
+                ap:TextBoxValidator.ErrorControlName="tbErrorBlock"
+                PlaceholderText="Beschreibung" />
+            <TextBlock
+                x:Name="tbErrorBlock"
+                Margin="5,0,0,0"
+                Foreground="Red"
+                Text="Nur Zahlen" />
+        </RelativePanel>
+        <TextBlock
+            Text="Beginndatum"
+            Style="{StaticResource BodyTextBlockStyle}"
+            x:Name="tbDate"
+            Margin="5" />
+        <CalendarDatePicker
+            Date="{x:Bind ViewModel.CurrentJob.CreationDate, Mode=TwoWay}"
+            Margin="5" />
+        <TextBlock
+            Text="Dauer"
+            Style="{StaticResource BodyTextBlockStyle}"
+            x:Name="tbDuration"
+            Margin="5" />
+        <StackPanel>
+            <TextBox
+                x:Name="tbxDuration"
+                PlaceholderText="0"
+                Margin="5"
+                Text="{x:Bind ViewModel.CurrentJob.Duration, Mode=TwoWay}"
+                ap:TextBoxValidator.RegexValidator="^[0-9]*$"
+                ap:TextBoxValidator.ErrorControlName="tbErrorBlockDuration" />
+            <TextBlock
+                x:Name="tbErrorBlockDuration"
+                Foreground="Red"
+                Margin="5,0,0,0"
+                Text="Nur Zahlen" />
+        </StackPanel>
+        <TextBlock
+            Text="Notizen"
+            x:Name="tbNotes"
+            Style="{StaticResource BodyTextBlockStyle}"
+            Margin="5" />
+        <RichEditBox
+            Name="rebNoteBox"
+            Margin="5"
+            PlaceholderText="Beschreibung" />
+
+
+        <TextBlock x:Name="tbAttachmentsHeader"
+                   Style="{CustomResource SubtitleTextBlockStyle}"
+                   Text="Anhänge"/>
+        <RelativePanel>
+            <Button x:Name="btnTakePicture"
+                    Content="Schnappschuss"
+                    Command="{x:Bind ViewModel.CmdTakePictureFromWebcam}"/>
+            <Button x:Name="btnAddFile"
+                    Content="Datei anfügen"
+                    Command="{x:Bind ViewModel.CmdAddLocalFile}"
+                    RelativePanel.RightOf="btnTakePicture"/>
+        </RelativePanel>
+
+        <Button x:Name="btnSave"
+                Command="{x:Bind ViewModel.CmdSaveTask}"
+                Content="Speichern"/>
+    </StackPanel>
+</Page>
