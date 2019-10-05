@@ -2,6 +2,7 @@
 using Kairos.Business;
 using Kairos.Core;
 using Kairos.Core.Business.Config;
+using Kairos.Core.UWP.Business.Navigation;
 using Kairos.UI.Map;
 using Kairos.UI.Settings;
 using Kairos.UI.WorkOverview;
@@ -40,8 +41,11 @@ namespace Kairos
             }
 
             PageItems.Add(new PageItem() { Name = "WorkOverview" });
+            NavigationService.CurrentInstance.NavigationFrame = frameMain;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += ShellPage_BackRequested;
+            ElementTheme elementTheme = LoadBackgroundSetting();
+            SetBackgroundTheme(elementTheme);
         }
 
         private void ShellPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
@@ -90,6 +94,51 @@ namespace Kairos
             mediaPlayer.AudioCategory = MediaPlayerAudioCategory.Alerts;
             //mediaPlayer.Volume = 100.0;
             mediaPlayer.Play();
+        }
+
+        private ElementTheme LoadBackgroundSetting()
+        {
+            ElementTheme elementThemeToDisplay;
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            Windows.Storage.ApplicationDataCompositeValue composite = (Windows.Storage.ApplicationDataCompositeValue)roamingSettings.Values["ApplicationSettings"];
+
+            if (composite != null)
+            {
+                string theme = (composite["Theme"] as string);
+
+                if (theme != null)
+                {
+                    elementThemeToDisplay = 
+                        (theme.Equals(ElementTheme.Dark.ToString())) ? ElementTheme.Dark : 
+                        (theme.Equals(ElementTheme.Light.ToString())) ? ElementTheme.Light : 
+                        ElementTheme.Default;
+                }
+                else
+                {
+                    elementThemeToDisplay = SetDefaultTheme();
+                }
+            }
+            else
+            {
+                elementThemeToDisplay = SetDefaultTheme();
+            }
+            return elementThemeToDisplay;
+        }
+
+        private void SetBackgroundTheme(ElementTheme elementTheme)
+        {
+            if (Window.Current.Content is FrameworkElement frameworkElement)
+                frameworkElement.RequestedTheme = elementTheme;
+        }
+
+        private ElementTheme SetDefaultTheme()
+        {
+            ElementTheme elementTheme = ElementTheme.Dark;
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            Windows.Storage.ApplicationDataCompositeValue composites = new Windows.Storage.ApplicationDataCompositeValue();
+            composites["Theme"] = ElementTheme.Dark.ToString();
+            roamingSettings.Values["ApplicationSettings"] = composites;
+            return elementTheme;
         }
     }
 }

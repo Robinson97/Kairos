@@ -25,10 +25,12 @@ namespace Kairos.UI.Settings
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        public SettingsPageVM ViewModel { get; set; }
+
         public SettingsPage()
         {
             this.InitializeComponent();
-            this.DataContext = new SettingsPageVM();   
+            this.DataContext = ViewModel  = new SettingsPageVM();   
         }
     }
 }

@@ -10,12 +10,33 @@
     Background="{ThemeResource KairosPageBackgroundBrush}"
     mc:Ignorable="d">
     <StackPanel Orientation="Vertical" Margin="5">
-        <TextBlock Text="Einstellungen" Style="{StaticResource HeaderTextBlockStyle}" />
-        <TextBlock x:Name="tbThemeHeader" Text="Darktheme" />
-        <ToggleSwitch x:Name="scEnableDarkMode">
+        <TextBlock Text="Einstellungen" Style="{StaticResource HeaderTextBlockStyle}" Margin="0,0,0,10" />
+        <TextBlock x:Name="tbThemeHeader" Text="Choose a mode" Style="{StaticResource SubtitleTextBlockStyle}"/>
+        <RadioButton x:Name="rbDarkMode"
+                     Content="Dark"
+                     IsChecked="{Binding IsDarkSelected}"
+                     Command="{x:Bind ViewModel.CmdThemeRadioButtoActivated}"
+                     CommandParameter="dark"
+                     GroupName="themeSwitch"/>
+        <RadioButton x:Name="rbLigthMode"
+                     Content="Ligth"
+                     IsChecked="{Binding IsLigthSelected}"
+                     Command="{x:Bind ViewModel.CmdThemeRadioButtoActivated}"
+                     CommandParameter="ligth"
+                     GroupName="themeSwitch"/>
+        <RadioButton x:Name="rbDefaultMode"
+                     Content="Windows default"
+                     IsChecked="{Binding IsDefaultSelected}"
+                     Command="{x:Bind ViewModel.CmdThemeRadioButtoActivated}"
+                     CommandParameter="default"
+                     GroupName="themeSwitch"/>
+        <TextBlock x:Name="tbEasyInputDialog" 
+                   Margin="0,5,0,0"
+                   Text="Vereinfachtes Hinzufügen" />
+        <ToggleSwitch x:Name="scEnableEasyInputDialog">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Toggled">
-                    <core:InvokeCommandAction Command="{Binding CmdThemeToggleActivated, ConverterParameter={Binding ElementName=scEnableDarkMode}}" />
+                    <core:InvokeCommandAction Command="{Binding CmdnableEasyInputDialog, ConverterParameter={Binding ElementName=scEnableEasyInputDialog}}" />
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
         </ToggleSwitch>
